@@ -57,6 +57,8 @@ namespace CustomListProject
 
 
         // member methods
+
+        //ADD
         public void Add(T numberAdded)
         {
             if (capacity == count)
@@ -76,6 +78,46 @@ namespace CustomListProject
             myCustomArray[Count] = numberAdded;
             Count++;
         }
+
+        /// REMOVE
+        public bool Remove(T itemToRemove)
+        {
+            T[] temporaryArray = new T[capacity];
+            bool itemFound = false;
+            for (int i = 0; i < myCustomArray.Length; i++)
+            {
+
+                if (!myCustomArray[i].Equals(itemToRemove) && itemFound == false)
+                {
+                    if (itemFound == false)
+                    {
+                        temporaryArray[i] = myCustomArray[i];
+
+                    }
+
+                }
+
+                else if (myCustomArray[i].Equals(itemToRemove) && itemFound == false)
+                {
+
+                    itemFound = true;
+                    continue;
+                }
+                else
+                {
+                    temporaryArray[i - 1] = myCustomArray[i];
+                }
+
+            }
+            myCustomArray = temporaryArray;
+
+            if (itemFound)
+            {
+                count--;
+            }
+            return true;
+        }
+
 
     }
 }
